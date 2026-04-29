@@ -5,7 +5,7 @@ Dieses Projekt ist die eigenständige Auskopplung des Risikoregisters.
 ## GitHub-Links
 
 - Landingpage: `https://BM1964-25.github.io/Risikoregister/shell/landing.html`
-- Anwendung: `https://BM1964-25.github.io/Risikoregister/`
+- Anwendung: `https://BM1964-25.github.io/Risikoregister/app/`
 
 ## Ordner
 
@@ -52,7 +52,7 @@ Dieses Projekt ist die eigenständige Auskopplung des Risikoregisters.
 - Die Arbeitskopie der Hülle liegt in `shell/`.
 - Die Arbeitskopie der Anwendung liegt in `app/` und wird derzeit noch aus `platform/` gespiegelt.
 - Auf GitHub Pages zeigt der direkte Landingpage-Link auf `shell/landing.html`.
-- Der Root-Link zeigt die Anwendung im Repository-Hauptpfad.
+- Der App-Link zeigt auf den Ordner `app/`.
 - Zwischenstände immer mit Datum und kurzer Bezeichnung ablegen.
 - `snapshots/` für schnelle Referenzstände.
 - `backups/` für vollständige Archiv-Sicherungen.

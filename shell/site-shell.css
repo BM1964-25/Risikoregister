@@ -846,19 +846,18 @@ aside {
 }
 
 .hero-matrix-meta {
-  display:flex;
-  flex-wrap:wrap;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:8px;
   margin-top:4px;
+  width:100%;
 }
 
 .hero-matrix-meta span {
-  display:inline-flex;
+  display:flex;
   align-items:center;
   justify-content:center;
   min-height:32px;
-  flex:1 1 0;
-  min-width:0;
   padding:8px 10px;
   border-radius:999px;
   background:linear-gradient(135deg, rgba(244,246,248,0.95), rgba(228,232,237,0.95));

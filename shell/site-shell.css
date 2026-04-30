@@ -1448,8 +1448,15 @@ aside {
 .feature-grid,
 .timeline-grid {
   display:grid;
-  grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:18px;
+}
+
+.feature-grid {
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+}
+
+.timeline-grid {
+  grid-template-columns:repeat(2, minmax(0, 1fr));
 }
 
 .feature-card {
@@ -1506,6 +1513,22 @@ aside {
   display:grid;
   gap:12px;
   margin:18px 0 0;
+}
+
+.timeline-card > strong {
+  margin-bottom:8px;
+  color:var(--brand);
+  font-size:0.84rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+}
+
+.timeline-card h3 {
+  margin:0 0 10px;
+  font-family:var(--font-serif);
+  font-size:1.42rem;
+  line-height:1.08;
+  letter-spacing:-0.03em;
 }
 
 .proof-list div,

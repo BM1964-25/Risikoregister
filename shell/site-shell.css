@@ -849,10 +849,10 @@ aside {
   align-items:center;
   padding:7px 12px;
   border-radius:999px;
-  background:rgba(236,241,247,0.98);
-  color:#102741;
-  border:1px solid rgba(15,36,68,0.12);
-  box-shadow:0 8px 18px rgba(7,21,38,0.08);
+  background:rgba(248,244,234,0.96);
+  color:#091f33;
+  border:1px solid rgba(184,136,42,0.30);
+  box-shadow:0 8px 18px rgba(7,21,38,0.12);
 }
 
 .hero-matrix-lead {

@@ -472,6 +472,7 @@ aside {
   display:flex;
   flex-direction:column;
   gap:14px;
+  height:100%;
 }
 
 .eyebrow {
@@ -1172,7 +1173,7 @@ aside {
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  margin-top:18px;
+  margin-top:auto;
   padding-top:14px;
   color:rgba(248,249,251,0.9);
   font-size:0.82rem;

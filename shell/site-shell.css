@@ -797,7 +797,7 @@ aside {
   gap:16px;
   align-items:start;
   margin-top:16px;
-  padding:28px;
+  padding:22px;
   border-radius:26px;
   background:linear-gradient(160deg, rgba(250,252,255,0.98), rgba(239,244,249,0.96));
   border:1px solid rgba(15,36,68,0.08);
@@ -819,7 +819,7 @@ aside {
 .hero-matrix-copy {
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:8px;
   align-self:start;
   justify-content:flex-start;
   text-align:left;
@@ -827,7 +827,7 @@ aside {
 
 .hero-matrix-copy h3 {
   font-family:'DM Serif Display',serif;
-  font-size:1.72rem;
+  font-size:1.56rem;
   line-height:1;
   letter-spacing:-0.03em;
   color:#102741;
@@ -850,8 +850,8 @@ aside {
 .hero-matrix-lead {
   color:#314660;
   font-family:'Source Sans 3',sans-serif;
-  font-size:0.98rem;
-  line-height:1.5;
+  font-size:0.93rem;
+  line-height:1.44;
   letter-spacing:0;
   font-weight:400;
   margin:0;
@@ -861,8 +861,8 @@ aside {
 
 .hero-matrix-body {
   color:#314660;
-  line-height:1.72;
-  font-size:1rem;
+  line-height:1.55;
+  font-size:0.94rem;
   margin:0;
 }
 
@@ -900,12 +900,12 @@ aside {
   place-items:center;
   align-self:end;
   justify-self:end;
-  width:min(100%, 190px);
+  width:min(100%, 176px);
   aspect-ratio:1 / 1;
   height:auto;
   min-height:0;
   overflow:hidden;
-  padding:10px;
+  padding:8px;
   border-radius:20px;
   background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,248,251,0.98));
   border:1px solid rgba(15,36,68,0.08);
@@ -1150,10 +1150,10 @@ aside {
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  margin-top:8px;
-  padding:12px 16px;
+  margin-top:12px;
+  padding:10px 14px;
   color:#102741;
-  font-size:0.88rem;
+  font-size:0.82rem;
   border:1px solid rgba(15,36,68,0.10);
   border-radius:16px;
   background:rgba(255,255,255,0.92);

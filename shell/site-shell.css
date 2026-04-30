@@ -1168,24 +1168,22 @@ aside {
 .hero-left-footer {
   width:100%;
   align-self:stretch;
-  position:relative;
-  z-index:2;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  margin-top:12px;
-  padding:10px 14px;
-  color:#102741;
+  margin-top:18px;
+  padding-top:14px;
+  color:rgba(248,249,251,0.9);
   font-size:0.82rem;
-  border:1px solid rgba(15,36,68,0.10);
-  border-radius:16px;
-  background:rgba(255,255,255,0.92);
-  box-shadow:0 10px 22px rgba(7,21,38,0.08);
+  border-top:1px solid rgba(248,249,251,0.26);
+  background:transparent;
+  box-shadow:none;
+  border-radius:0;
 }
 
 .hero-left-footer strong {
-  color:#102741;
+  color:#ffffff;
   font-size:0.9rem;
   letter-spacing:0.04em;
   text-transform:uppercase;
@@ -1193,7 +1191,7 @@ aside {
 }
 
 .hero-left-footer span {
-  color:#102741;
+  color:rgba(248,249,251,0.9);
 }
 
 .hero-ai-action {

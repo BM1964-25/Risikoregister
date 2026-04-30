@@ -526,6 +526,34 @@ aside {
   margin-top:6px;
 }
 
+.hero-actions .btn {
+  min-width:240px;
+  min-height:56px;
+  padding:0.95rem 1.5rem;
+  border-radius:18px;
+  font-size:0.98rem;
+  letter-spacing:0.04em;
+  box-shadow:0 18px 34px rgba(7,21,38,0.22);
+}
+
+.hero-actions .btn-dark {
+  background:linear-gradient(135deg, #f8f4ea, #efe2c0);
+  color:#091f33;
+  border:1px solid rgba(184,136,42,0.36);
+}
+
+.hero-actions .btn-light {
+  background:linear-gradient(135deg, #ffffff, #edf4fb);
+  color:#091f33;
+  border:1px solid rgba(255,255,255,0.55);
+}
+
+.hero-actions .btn:hover,
+.hero-actions .btn:focus-visible {
+  transform:translateY(-2px);
+  box-shadow:0 22px 40px rgba(7,21,38,0.28);
+}
+
 .hero-proof {
   display:grid;
   grid-template-columns:repeat(3, minmax(0, 1fr));

@@ -939,7 +939,16 @@ aside {
 
 .hero-card-compact .hero-matrix-copy h3,
 .hero-card-compact .hero-ai-head h3 {
-  font-size:1.18rem;
+  font-size:1.42rem;
+  line-height:1.05;
+}
+
+.hero-report-head h3 {
+  font-family:'DM Serif Display',serif;
+  font-size:1.42rem;
+  line-height:1.05;
+  letter-spacing:-0.02em;
+  color:#ffffff;
 }
 
 .hero-card-compact .hero-ai-head {
@@ -1009,14 +1018,6 @@ aside {
   display:flex;
   flex-direction:column;
   gap:10px;
-}
-
-.hero-report-head h3 {
-  font-family:'DM Serif Display',serif;
-  font-size:1.42rem;
-  line-height:1.05;
-  letter-spacing:-0.02em;
-  color:#ffffff;
 }
 
 .hero-report-lead {

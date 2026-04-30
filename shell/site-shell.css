@@ -1038,7 +1038,8 @@ aside {
 .hero-report-points div {
   min-height:92px;
   display:flex;
-  align-items:center;
+  align-items:flex-start;
+  justify-content:flex-start;
   padding:14px 16px;
   border-radius:18px;
   background:rgba(255,255,255,0.08);
@@ -1046,6 +1047,7 @@ aside {
   color:rgba(248,249,251,0.88);
   line-height:1.55;
   font-size:0.93rem;
+  text-align:left;
 }
 
 .hero-ai-intro,

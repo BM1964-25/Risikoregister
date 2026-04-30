@@ -474,6 +474,7 @@ aside {
   gap:14px;
   height:100%;
   padding-bottom:18px;
+  transform:translateY(-8px);
 }
 
 .eyebrow {
@@ -645,6 +646,7 @@ aside {
   background:transparent;
   color:#f8f9fb;
   box-shadow:none;
+  transform:translateY(-8px);
 }
 
 .panel-badge {

@@ -792,7 +792,7 @@ aside {
   display:grid;
   grid-template-columns:minmax(0, 1.5fr) minmax(220px, 0.9fr);
   gap:16px;
-  align-items:stretch;
+  align-items:start;
   margin-top:16px;
   padding:22px;
   border-radius:24px;
@@ -887,10 +887,11 @@ aside {
   display:flex;
   align-items:center;
   justify-content:center;
-  align-self:stretch;
-  min-height:420px;
+  align-self:start;
+  height:220px;
+  min-height:220px;
   overflow:hidden;
-  padding:12px;
+  padding:10px;
   border-radius:20px;
   background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(246,248,251,0.96));
   border:1px solid rgba(184,136,42,0.18);

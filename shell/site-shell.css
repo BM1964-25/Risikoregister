@@ -846,6 +846,16 @@ aside {
   font-size:0.88rem;
 }
 
+.hero-overview-section {
+  display:grid;
+  gap:16px;
+}
+
+.hero-overview-section .hero-matrix-card,
+.hero-overview-section .hero-ai-card {
+  margin-top:0;
+}
+
 .hero-ai-card {
   margin-top:16px;
   padding:22px;

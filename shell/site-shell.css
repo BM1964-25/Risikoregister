@@ -473,6 +473,7 @@ aside {
   flex-direction:column;
   gap:14px;
   height:100%;
+  padding-bottom:18px;
 }
 
 .eyebrow {

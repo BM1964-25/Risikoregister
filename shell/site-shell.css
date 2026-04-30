@@ -521,19 +521,22 @@ aside {
 
 .hero-actions {
   display:flex;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
   gap:12px;
   margin-top:6px;
+  align-items:stretch;
 }
 
 .hero-actions .btn {
-  min-width:240px;
+  min-width:0;
+  flex:1 1 0;
   min-height:56px;
   padding:0.95rem 1.5rem;
   border-radius:18px;
   font-size:0.98rem;
   letter-spacing:0.04em;
   box-shadow:0 18px 34px rgba(7,21,38,0.22);
+  white-space:nowrap;
 }
 
 .hero-actions .btn-dark {

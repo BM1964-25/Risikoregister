@@ -902,6 +902,8 @@ aside {
   align-items:center;
   justify-content:center;
   align-self:end;
+  justify-self:end;
+  width:84%;
   height:220px;
   min-height:220px;
   overflow:hidden;

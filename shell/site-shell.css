@@ -826,8 +826,16 @@ aside {
 }
 
 .hero-matrix-copy .section-tag {
-  color:#d3dfeb;
   opacity:1;
+  display:inline-flex;
+  width:fit-content;
+  align-items:center;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(248,244,234,0.96);
+  color:#091f33;
+  border:1px solid rgba(184,136,42,0.30);
+  box-shadow:0 8px 18px rgba(7,21,38,0.12);
 }
 
 .hero-matrix-lead {
@@ -1043,13 +1051,13 @@ aside {
 .hero-ai-card .section-tag {
   display:inline-flex;
   width:fit-content;
+  align-items:center;
   padding:8px 12px;
   border-radius:999px;
-  background:linear-gradient(135deg, rgba(184,136,42,0.20), rgba(255,255,255,0.08));
-  border:1px solid rgba(184,136,42,0.34);
-  color:#f4d7a0;
-  align-items:center;
-  justify-content:center;
+  background:rgba(248,244,234,0.96);
+  color:#091f33;
+  border:1px solid rgba(184,136,42,0.30);
+  box-shadow:0 8px 18px rgba(7,21,38,0.12);
 }
 
 .hero-ai-input {

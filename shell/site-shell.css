@@ -786,6 +786,66 @@ aside {
   margin-right:auto;
 }
 
+.hero-matrix-card {
+  display:grid;
+  grid-template-columns:minmax(0, 1.5fr) minmax(220px, 0.9fr);
+  gap:16px;
+  align-items:stretch;
+  margin-top:16px;
+  padding:22px;
+  border-radius:24px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(242,246,250,0.98));
+  border:1px solid rgba(18,63,99,0.14);
+  box-shadow:0 18px 40px rgba(7,21,38,0.12);
+}
+
+.hero-matrix-copy {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.hero-matrix-copy h3 {
+  font-family:'DM Serif Display',serif;
+  font-size:1.45rem;
+  line-height:1.05;
+  letter-spacing:-0.02em;
+  color:var(--brand-dark);
+}
+
+.hero-matrix-copy p {
+  color:var(--muted);
+  line-height:1.65;
+  margin:0;
+}
+
+.hero-matrix-legend {
+  display:grid;
+  gap:10px;
+  align-content:center;
+}
+
+.hero-matrix-chip {
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding:14px 16px;
+  border-radius:16px;
+  background:linear-gradient(135deg, rgba(15,36,68,0.07), rgba(184,136,42,0.08));
+  border:1px solid rgba(18,63,99,0.10);
+}
+
+.hero-matrix-chip strong {
+  color:var(--brand-dark);
+  font-size:0.96rem;
+  letter-spacing:0.02em;
+}
+
+.hero-matrix-chip span {
+  color:var(--muted);
+  font-size:0.88rem;
+}
+
 .status-pill {
   display:inline-flex;
   align-items:center;
@@ -1466,6 +1526,10 @@ aside {
     grid-template-columns:1fr;
   }
 
+  .hero-matrix-card {
+    grid-template-columns:1fr;
+  }
+
   .feature-grid,
   .timeline-grid,
   .faq-grid,
@@ -1510,6 +1574,10 @@ aside {
 
   .network-grid {
     margin-top:16px;
+  }
+
+  .hero-matrix-card {
+    grid-template-columns:1fr;
   }
 
   .node-spread {

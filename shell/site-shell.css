@@ -760,6 +760,7 @@ aside {
 
 .hero-summary-card {
   text-align:center;
+  min-height:174px;
 }
 
 .hero-summary-card strong,
@@ -770,9 +771,19 @@ aside {
   text-align:center;
 }
 
+.hero-summary-card strong {
+  margin-bottom:6px;
+}
+
+.hero-summary-card .network-value {
+  margin-bottom:2px;
+}
+
 .hero-summary-card p,
 .hero-summary-card small {
   max-width:28ch;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .status-pill {
@@ -824,6 +835,7 @@ aside {
   grid-template-columns:repeat(2, minmax(0, 1fr));
   gap:14px;
   margin-top:20px;
+  grid-auto-rows:1fr;
 }
 
 .node,
@@ -834,6 +846,7 @@ aside {
   border-radius:18px;
   background:linear-gradient(180deg, #fefefe, #f4f7f5);
   border:1px solid rgba(18,63,56,0.1);
+  height:100%;
 }
 
 .node.active,

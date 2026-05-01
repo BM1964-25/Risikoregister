@@ -1895,11 +1895,10 @@ aside {
   align-items:center;
   gap:14px;
   flex-wrap:wrap;
-  padding:12px 18px;
-  border-radius:16px;
-  background:rgba(255,255,255,0.82);
-  border:1px solid rgba(22,63,99,0.10);
-  box-shadow:0 10px 24px rgba(10,23,36,0.06);
+  padding:18px 0 0;
+  border:0;
+  background:transparent;
+  box-shadow:none;
   color:var(--muted);
   font-size:0.92rem;
 }
@@ -1933,7 +1932,7 @@ aside {
 }
 
 .footer-sep {
-  padding:0 10px;
+  padding:0 12px;
   color:rgba(48,66,82,0.55);
   font-weight:400;
   user-select:none;

@@ -1539,8 +1539,8 @@ aside {
 .timeline-list div {
   padding:14px 16px;
   border-radius:16px;
-  border:1px solid rgba(18,63,56,0.08);
-  background:#f8fbf9;
+  border:1px solid rgba(18,63,99,0.10);
+  background:linear-gradient(180deg, #fbfdff, #eef4fb);
 }
 
 .faq-grid {

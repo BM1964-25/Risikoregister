@@ -1182,16 +1182,18 @@ aside {
   align-self:stretch;
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  justify-content:flex-end;
   gap:16px;
   margin-top:auto;
   padding-top:14px;
+  margin-left:auto;
   color:rgba(248,249,251,0.9);
   font-size:0.82rem;
   border-top:1px solid rgba(248,249,251,0.26);
   background:transparent;
   box-shadow:none;
   border-radius:0;
+  text-align:right;
 }
 
 .hero-left-footer strong {

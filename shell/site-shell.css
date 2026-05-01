@@ -1589,9 +1589,10 @@ aside {
 
 .pricing-grid {
   display:grid;
-  grid-template-columns:repeat(2, minmax(0, 1fr));
+  grid-template-columns:minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
   gap:16px;
   margin-bottom:20px;
+  align-items:stretch;
 }
 
 .pricing-subgrid {
@@ -1605,6 +1606,7 @@ aside {
   border-radius:20px;
   border:1px solid rgba(18,63,99,0.12);
   background:linear-gradient(180deg, #fbfdff, #edf3fb);
+  min-height:100%;
 }
 
 .price-block.featured {

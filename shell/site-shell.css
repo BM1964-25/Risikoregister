@@ -1002,9 +1002,12 @@ aside {
 .hero-ai-head p {
   margin-top:0;
   color:#102741 !important;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:0.96rem;
   line-height:1.55;
-  font-weight:600;
-  max-width:44ch;
+  font-weight:400;
+  max-width:none;
+  width:100%;
 }
 
 .hero-ai-lead {
@@ -1017,11 +1020,14 @@ aside {
 }
 
 .hero-ai-body {
-  margin-top:8px;
+  margin-top:0;
   color:#102741 !important;
-  line-height:1.6;
+  font-family:'Source Sans 3',sans-serif;
   font-size:0.96rem;
-  max-width:60ch;
+  line-height:1.55;
+  font-weight:400;
+  max-width:none;
+  width:100%;
   margin-left:0;
   margin-right:0;
 }

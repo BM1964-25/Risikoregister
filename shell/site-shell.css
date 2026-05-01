@@ -1590,6 +1590,12 @@ aside {
   margin-bottom:20px;
 }
 
+.pricing-subgrid {
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+}
+
 .price-block {
   padding:22px;
   border-radius:20px;
@@ -1632,30 +1638,30 @@ aside {
   color:rgba(246,250,248,0.78);
 }
 
-.pricing-note {
-  margin-bottom:18px;
+.pricing-detail {
+  padding:20px;
+  border-radius:18px;
+  border:1px solid rgba(181,139,66,0.12);
+  background:linear-gradient(180deg, #fffefb, #fbf7ef);
+}
+
+.pricing-detail strong {
+  display:block;
+  margin-bottom:12px;
   color:var(--brand);
-  font-size:0.98rem;
-  line-height:1.75;
-  padding:16px 18px;
-  border-radius:16px;
-  background:rgba(21,63,54,0.06);
+  font-size:0.94rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
 }
 
-.pricing-list {
-  display:grid;
-  gap:12px;
+.pricing-detail p {
   margin:0;
-  padding:0;
-  list-style:none;
+  color:var(--muted);
+  line-height:1.72;
 }
 
-.pricing-list li {
-  padding:14px 16px;
-  border-radius:16px;
-  border:1px solid rgba(181,139,66,0.1);
-  background:linear-gradient(180deg, #fffefa, #faf5ea);
-  line-height:1.65;
+.pricing-detail p + p {
+  margin-top:12px;
 }
 
 .cta-band {
@@ -1985,7 +1991,8 @@ aside {
   .feature-grid,
   .timeline-grid,
   .faq-grid,
-  .pricing-grid {
+  .pricing-grid,
+  .pricing-subgrid {
     grid-template-columns:repeat(2, minmax(0, 1fr));
   }
 }
@@ -2018,6 +2025,7 @@ aside {
   .hero-proof,
   .hero-purchase-grid,
   .pricing-grid,
+  .pricing-subgrid,
   .proof-grid,
   .insight-stack,
   .network-grid {

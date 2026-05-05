@@ -6,7 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>Risiko Register</title>
+  <title>SMART RISK Risiko-Register</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -96,8 +96,23 @@
       font-weight:400;
       letter-spacing:-0.03em;
       max-width:none;
-      white-space:nowrap;
       color:#ffffff;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      white-space:nowrap;
+      flex-wrap:wrap;
+    }
+
+    .header-brand-icon {
+      width:clamp(44px, 4.2vw, 60px);
+      height:clamp(44px, 4.2vw, 60px);
+      flex:0 0 auto;
+      object-fit:cover;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.26);
+      box-shadow:0 8px 20px rgba(7,18,30,0.24);
+      background:transparent;
     }
 
     .brand-smart {
@@ -1334,7 +1349,8 @@
       display:flex;
       flex-direction:column;
       gap:12px;
-      align-self:start;
+      align-self:stretch;
+      height:100%;
     }
 
     .ai-chat-top {
@@ -1348,6 +1364,7 @@
       display:grid;
       gap:10px;
       flex:1 1 auto;
+      min-height:0;
     }
 
     .ai-chat-head {
@@ -11869,7 +11886,7 @@
       <div class="header-left">
         <p class="kicker">BuiltSmart Hub</p>
         <p class="suite-line">RISK MANAGEMENT SUITE</p>
-        <h1>RISIKO <span class="brand-smart">REGISTER</span></h1>
+        <h1><img class="header-brand-icon" src="./assets/risk-register-icon.png" alt="" aria-hidden="true">SMART RISK <span class="brand-smart">Risiko-Register</span></h1>
         <p class="subtitle"><span>Risikostände</span><span class="subtitle-sep">|</span><span>Maßnahmen</span><span class="subtitle-sep">|</span><span>Status</span><span class="subtitle-sep">|</span><span>Restgefahr</span></p>
       </div>
       <div class="topbar-summary header-right">

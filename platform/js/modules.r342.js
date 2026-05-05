@@ -3289,7 +3289,7 @@ export const modules = {
               inputLabel: "Individuelle Hilfefrage",
               placeholder: "Stelle eine Frage zur Bedienung der Anwendung.",
               sendLabel: "Hilfefrage senden",
-              outputMinHeight: 200,
+              outputMinHeight: 240,
               composerClass: "ai-chat-composer compact",
               promptsClass: "help-flow",
               draft: String(aiDrafts.hilfe || ""),

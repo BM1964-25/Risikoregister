@@ -1,5 +1,5 @@
-import { createStore, cloneState } from "./state.r342.js?fresh=417";
-import { modules, riskCategoryOptions, normalizeRiskCategoryValue, normalizeRiskStatusValue, normalizeRiskRegisterPanelOpenStates, normalizeRiskRegisterPanelOrder, deriveRiskLikelihoodFromPercent, buildManagementReportData, buildSelectedReportData, renderRiskReportText } from "./modules.r342.js?fresh=924";
+import { createStore, cloneState } from "./state.r342.js?fresh=418";
+import { modules, riskCategoryOptions, normalizeRiskCategoryValue, normalizeRiskStatusValue, normalizeRiskRegisterPanelOpenStates, normalizeRiskRegisterPanelOrder, deriveRiskLikelihoodFromPercent, buildManagementReportData, buildSelectedReportData, renderRiskReportText } from "./modules.r342.js?fresh=925";
 
 const store = createStore(cloneState());
 if (typeof history !== "undefined" && "scrollRestoration" in history) {
@@ -1090,11 +1090,14 @@ function renderAiSettingsPanel() {
     apiKeyInput.value = aiSettings.apiKey || "";
   }
   if (budgetDisplay) {
-    const budgetText = new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "EUR",
-      maximumFractionDigits: 0
-    }).format(Number(aiSettings.budgetEur) || 0);
+    const budgetValue = Number(aiSettings.budgetEur) || 0;
+    const budgetText = budgetValue > 0
+      ? new Intl.NumberFormat("de-DE", {
+          style: "currency",
+          currency: "EUR",
+          maximumFractionDigits: 0
+        }).format(budgetValue)
+      : "Guthaben aufgebraucht";
     budgetDisplay.textContent = budgetText;
   }
   if (statusTarget) {

@@ -3869,6 +3869,12 @@
       line-height:1.5;
     }
 
+    .ai-connection-copy-singleline {
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
     .ai-connection-links {
       display:flex;
       width:100%;
@@ -3877,6 +3883,26 @@
     .ai-connection-links .action-btn {
       width:100%;
       justify-content:center;
+      text-align:center;
+    }
+
+    .ai-balance-line {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-top:2px;
+      padding:10px 12px;
+      border:1px solid rgba(22,63,99,0.14);
+      border-radius:12px;
+      background:#f7fbfe;
+      color:var(--muted);
+      font-size:0.82rem;
+      line-height:1.35;
+    }
+
+    .ai-balance-line strong {
+      color:var(--brand-dark);
+      font-size:0.92rem;
     }
 
     .ai-connection-controls {
@@ -11947,6 +11973,6 @@
     </footer>
   </div>
 
-  <script type="module" src="./js/app.r401.js?fresh=1190"></script>
+  <script type="module" src="./js/app.r401.js?fresh=1191"></script>
   </body>
 </html>

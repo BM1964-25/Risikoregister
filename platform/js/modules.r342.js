@@ -3248,7 +3248,7 @@ export const modules = {
                   <div class="ai-connection-links">
                     <a class="action-btn" href="https://console.anthropic.com/" target="_blank" rel="noopener noreferrer">Anthropic Console öffnen</a>
                   </div>
-                  <p>Modell: Claude Sonnet 4. Für die automatische KI-Nutzung benötigt die App einen technischen Anthropic-API-Schlüssel. Das ist kein normaler Benutzer- oder Claude-Account, sondern der Zugriff für die direkte KI-Anbindung im Browser. Die Abrechnung läuft direkt zwischen dir und Anthropic/Claude und wird separat nach Verbrauch berechnet. Die offizielle <a href="https://docs.anthropic.com/en/docs/about-claude/pricing" target="_blank" rel="noopener noreferrer">Anthropic-Dokumentation zur Preisübersicht</a> findest du dort.</p>
+                  <p>Modell: Claude Sonnet 4. Für die automatische KI-Nutzung benötigt die App einen technischen Anthropic-API-Schlüssel. Das ist kein normaler Benutzer- oder Claude-Account, sondern der Zugriff für die direkte KI-Anbindung im Browser. Für den Einstieg werden 10 Euro empfohlen. Das ist kein ausgelesener Kontostand, sondern nur eine Orientierung: Je nach Umfang reicht das grob für zahlreiche kurze Prüfungen oder etwa 150 bis 300 Seiten komprimierter Berichtstexte; bei längeren, ausführlicheren Berichten entsprechend weniger. Die Abrechnung läuft direkt zwischen dir und Anthropic/Claude und wird separat nach Verbrauch berechnet. Die offizielle <a href="https://docs.anthropic.com/en/docs/about-claude/pricing" target="_blank" rel="noopener noreferrer">Anthropic-Dokumentation zur Preisübersicht</a> findest du dort.</p>
                 </div>
               </div>
             </section>

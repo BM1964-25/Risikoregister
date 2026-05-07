@@ -1648,7 +1648,7 @@ aside {
 
 .pricing-grid {
   display:grid;
-  grid-template-columns:minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns:repeat(2, minmax(0, 1fr));
   gap:16px;
   margin-bottom:20px;
   align-items:stretch;
@@ -1686,9 +1686,9 @@ aside {
   display:block;
   margin-bottom:10px;
   color:var(--muted);
-  font-size:0.84rem;
+  font-size:0.78rem;
   font-weight:800;
-  letter-spacing:0.08em;
+  letter-spacing:0.1em;
   text-transform:uppercase;
 }
 
@@ -1698,6 +1698,8 @@ aside {
 
 .price-block.featured .price-value {
   color:#ffffff;
+  font-size:3.4rem;
+  line-height:0.92;
 }
 
 .price-tax {
@@ -1717,7 +1719,7 @@ aside {
 .price-copy {
   margin:0;
   color:var(--muted);
-  line-height:1.65;
+  line-height:1.55;
   text-align:center;
 }
 
@@ -1725,8 +1727,8 @@ aside {
   display:block;
   margin-bottom:8px;
   color:var(--ink);
-  font-size:1.55rem;
-  line-height:1.02;
+  font-size:3rem;
+  line-height:0.96;
   letter-spacing:-0.03em;
 }
 
@@ -1737,6 +1739,10 @@ aside {
 .price-block .price-label,
 .price-block .price-copy {
   width:100%;
+}
+
+.price-block.featured .price-copy {
+  font-size:1.08rem;
 }
 
 .pricing-detail {

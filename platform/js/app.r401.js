@@ -1,5 +1,5 @@
-import { createStore, cloneState } from "./state.r342.js?fresh=421";
-import { modules, riskCategoryOptions, normalizeRiskCategoryValue, normalizeRiskStatusValue, normalizeRiskRegisterPanelOpenStates, normalizeRiskRegisterPanelOrder, deriveRiskLikelihoodFromPercent, buildManagementReportData, buildSelectedReportData, renderRiskReportText } from "./modules.r342.js?fresh=928";
+import { createStore, cloneState } from "./state.r342.js?fresh=422";
+import { modules, riskCategoryOptions, normalizeRiskCategoryValue, normalizeRiskStatusValue, normalizeRiskRegisterPanelOpenStates, normalizeRiskRegisterPanelOrder, deriveRiskLikelihoodFromPercent, buildManagementReportData, buildSelectedReportData, renderRiskReportText } from "./modules.r342.js?fresh=929";
 
 const store = createStore(cloneState());
 if (typeof history !== "undefined" && "scrollRestoration" in history) {
@@ -268,8 +268,8 @@ function formatTimestamp(value) {
 function buildAiApiKeyPreview(value) {
   const key = String(value || "").trim();
   if (!key) return "";
-  if (key.length <= 12) return key;
-  return `${key.slice(0, 12)}...`;
+  if (key.length <= 13) return key;
+  return `${key.slice(0, 13)}...`;
 }
 
 

@@ -265,6 +265,13 @@ function formatTimestamp(value) {
   return date.toLocaleString("de-DE");
 }
 
+function buildAiApiKeyPreview(value) {
+  const key = String(value || "").trim();
+  if (!key) return "";
+  if (key.length <= 12) return key;
+  return `${key.slice(0, 12)}...`;
+}
+
 
 function jumpToReportTarget(moduleKey, targetId) {
   if (!moduleKey || !targetId) return;
@@ -492,6 +499,7 @@ function getDefaultAiSettings() {
   return {
     provider: "anthropic",
     apiKey: "",
+    apiKeyPreview: "",
     proxyBaseUrl: DEFAULT_AI_PROXY_BASE_URL,
     budgetEur: 10,
     modelProfile: "balanced",
@@ -506,10 +514,12 @@ function getDefaultAiSettings() {
 
 function normalizeAiSettings(raw = {}) {
   const provider = "anthropic";
+  const apiKey = typeof raw.apiKey === "string" ? raw.apiKey : "";
   return {
     ...getDefaultAiSettings(),
     provider,
-    apiKey: typeof raw.apiKey === "string" ? raw.apiKey : "",
+    apiKey,
+    apiKeyPreview: typeof raw.apiKeyPreview === "string" && raw.apiKeyPreview.trim() ? raw.apiKeyPreview.trim() : buildAiApiKeyPreview(apiKey),
     proxyBaseUrl: normalizeAiProxyBaseUrl(raw.proxyBaseUrl) || DEFAULT_AI_PROXY_BASE_URL,
     budgetEur: Number.isFinite(Number(raw.budgetEur)) ? Math.max(0, Number(raw.budgetEur)) : getDefaultAiSettings().budgetEur,
     modelProfile: "balanced",
@@ -1093,6 +1103,8 @@ function renderAiSettingsPanel() {
   }
   if (apiKeyInput) {
     apiKeyInput.type = aiApiKeyVisible ? "text" : "password";
+    const hasApiKey = String(aiSettings.apiKey || "").trim().length > 0;
+    apiKeyInput.placeholder = hasApiKey ? "sk- ..." : (String(aiSettings.apiKeyPreview || "").trim() || "sk- ...");
   }
   if (apiKeyToggle) {
     apiKeyToggle.textContent = aiApiKeyVisible ? "🙈" : "👁";
@@ -1143,6 +1155,7 @@ function readAiSettingsFromPanel() {
     provider: "anthropic",
     modelProfile: "balanced",
     apiKey,
+    apiKeyPreview: apiKey ? buildAiApiKeyPreview(apiKey) : aiSettings.apiKeyPreview,
     proxyBaseUrl: aiSettings.proxyBaseUrl || DEFAULT_AI_PROXY_BASE_URL,
     budgetEur: Number(aiSettings.budgetEur) || getDefaultAiSettings().budgetEur,
     connected: aiSettings.connected,
@@ -1258,9 +1271,11 @@ function disconnectAiConnection() {
     aiConnectionAbortController.abort();
     aiConnectionAbortController = null;
   }
+  const currentApiKey = String(document.getElementById("aiApiKey")?.value || aiSettings.apiKey || "");
   aiSettings = normalizeAiSettings({
     ...readAiSettingsFromPanel(),
     apiKey: "",
+    apiKeyPreview: buildAiApiKeyPreview(currentApiKey) || aiSettings.apiKeyPreview || "",
     connected: false,
     testing: false,
     lastDisconnectAt: new Date().toISOString(),
@@ -3533,6 +3548,7 @@ globalThis.__riskSetActiveModule = setActiveModule;
 globalThis.__riskSaveAiSettings = () => {
   const nextAiSettings = normalizeAiSettings({
     ...readAiSettingsFromPanel(),
+    apiKeyPreview: buildAiApiKeyPreview(String(document.getElementById("aiApiKey")?.value || "")) || aiSettings.apiKeyPreview || "",
     connected: aiSettings.connected,
     testing: false,
     lastStatus: aiSettings.lastStatus

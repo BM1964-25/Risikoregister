@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">SMART CAREER Navigator Icon</title>
+  <desc id="desc">Monogramm mit stilisierten Karten für die CareerSuite-Landingpage.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1f3a"/>
+      <stop offset="55%" stop-color="#1f446b"/>
+      <stop offset="100%" stop-color="#b8882a"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8f6f0"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+  <rect x="38" y="40" width="180" height="176" rx="30" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
+  <rect x="58" y="64" width="68" height="54" rx="14" fill="url(#card)" opacity="0.98"/>
+  <rect x="130" y="64" width="68" height="54" rx="14" fill="url(#card)" opacity="0.85"/>
+  <rect x="58" y="126" width="140" height="54" rx="14" fill="url(#card)" opacity="0.92"/>
+  <text x="128" y="174" text-anchor="middle" fill="#ffffff" font-family="Georgia, 'Times New Roman', serif" font-size="68" font-weight="700" letter-spacing="3">CS</text>
+</svg>

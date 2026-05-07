@@ -1894,7 +1894,7 @@ export const modules = {
         { key: "category", label: "Kategorie", render: (risk) => risk.category || "—" },
         { key: "phase", label: "Projektphase / Zuordnung", render: (risk) => risk.phase || "—" },
         { key: "impact", label: "Auswirkung", render: (risk) => `${Math.round(Number(risk.probabilityPercent) || 0)}% / ${formatCurrency(risk.financialImpact)}`, numeric: true },
-        { key: "owner", label: "Verantwortlichkeit", render: (risk) => risk.owner || "nicht zugewiesen" },
+        { key: "owner", label: "Verantwortlich", render: (risk) => risk.owner || "nicht zugewiesen" },
         { key: "dueDate", label: "Ziel-Termin", render: (risk) => (risk.dueDate ? formatDate(risk.dueDate) : "—") },
         { key: "measures", label: "Maßnahmenplanung", render: (risk) => {
           const measures = String(risk.measures || risk.description || "").trim();
@@ -2405,7 +2405,7 @@ export const modules = {
                 <div class="risk-register-toolbar-grid">
                   <div class="form-field">
                     <label for="risk_view_search">Suche</label>
-                    <input id="risk_view_search" data-risk-ui-field="search" type="text" value="${riskView.search || ""}" placeholder="Risiko, Owner, Beschreibung">
+                    <input id="risk_view_search" data-risk-ui-field="search" type="text" value="${riskView.search || ""}" placeholder="Risiko, Verantwortlich, Beschreibung">
                   </div>
                   <div class="form-field">
                     <label for="risk_view_sort">Sortierung</label>
@@ -2415,7 +2415,7 @@ export const modules = {
                         <option value="value" ${sortBy === "value" ? "selected" : ""}>Risikowert</option>
                         <option value="id" ${sortBy === "id" ? "selected" : ""}>Risiko-ID</option>
                         <option value="category" ${sortBy === "category" ? "selected" : ""}>Kategorie</option>
-                        <option value="owner" ${sortBy === "owner" ? "selected" : ""}>Verantwortlichkeit</option>
+                        <option value="owner" ${sortBy === "owner" ? "selected" : ""}>Verantwortlich</option>
                         <option value="dueDate" ${sortBy === "dueDate" ? "selected" : ""}>Ziel-Termin</option>
                       </select>
                     </div>

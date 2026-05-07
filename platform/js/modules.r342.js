@@ -3102,8 +3102,9 @@ export const modules = {
               <button class="action-btn" type="button" data-action="clear-report-draft" onclick="void globalThis.__riskClearReportDraft?.()">Entwurf leeren</button>
               <button class="action-btn" type="button" data-action="jump-to-report-export" onclick="void globalThis.__riskJumpToReportExport?.()">Bericht exportieren</button>
             </div>
-            <h3 id="reportDraftHeading">${reportOutputTitle}</h3>
-            <p class="form-note">Der Bericht ist direkt bearbeitbar und wird automatisch gespeichert.</p>
+            <h3 id="reportDraftHeading">Aktueller Entwurfsstand</h3>
+            <p class="form-note">Dieser Text wird automatisch gespeichert und bildet die Grundlage für KI und Export.</p>
+            <p class="form-note">${reportOutputTitle}</p>
             <p class="report-draft-toolbar-note">Bitte zuerst Text markieren, dann formatieren.</p>
             <div class="report-draft-toolbar" role="toolbar" aria-label="Bericht formatieren">
               <div class="report-draft-toolbar-group">

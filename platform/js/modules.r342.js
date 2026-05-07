@@ -180,6 +180,21 @@ function renderAiChatBubbleHtml(message = {}) {
   `;
 }
 
+function getAiChatConnectionBadgeState() {
+  const settings = globalThis.__riskRegisterAiSettings || {};
+  const hasApiKey = Boolean(String(settings.apiKey || "").trim() || String(settings.apiKeyPreview || "").trim());
+  if (settings.testing) {
+    return { tone: "busy", label: "Verbindung wird geprüft ..." };
+  }
+  if (settings.connected) {
+    return { tone: "success", label: "Verbindung OK" };
+  }
+  if (hasApiKey) {
+    return { tone: "danger", label: "Verbindung fehlgeschlagen" };
+  }
+  return { tone: "neutral", label: "Kein API-Schlüssel" };
+}
+
 function renderAiChatThreadHtml(config = {}) {
   const chatId = String(config.chatId || "fach");
   const panelKey = String(config.panelKey || `${chatId}ChatPanel`);
@@ -188,16 +203,9 @@ function renderAiChatThreadHtml(config = {}) {
   const messages = Array.isArray(config.messages) ? config.messages : [];
   const cardClass = String(config.cardClass || "card-info").trim();
   const latestAssistant = [...messages].reverse().find((message) => message?.role === "assistant") || null;
-  const status = String(config.status || "Bereit");
+  const badgeState = getAiChatConnectionBadgeState();
   const collapsible = config.collapsible !== false;
-  const statusTone = config.busy
-    ? "busy"
-    : /fehler|fehlgeschlagen|fehlt/i.test(status)
-      ? "danger"
-      : /antwort bereit|bereit/i.test(status)
-        ? "success"
-        : "neutral";
-  const outputToneClass = statusTone === "success" ? "tone-success" : statusTone === "danger" ? "tone-danger" : "tone-neutral";
+  const outputToneClass = badgeState.tone === "success" ? "tone-success" : badgeState.tone === "danger" ? "tone-danger" : "tone-neutral";
   const outputMinHeight = Math.max(120, Number(config.outputMinHeight) || 200);
   const bodyHtml = `
     ${config.context ? `<p class="ai-chat-context">${escapeHtml(String(config.context))}</p>` : ""}
@@ -260,7 +268,7 @@ function renderAiChatThreadHtml(config = {}) {
               <h3>${escapeHtml(String(config.title || "Chat"))}</h3>
               <p class="form-note">${escapeHtml(String(config.description || ""))}</p>
             </div>
-            <span class="badge ai-chat-status ai-chat-status-${statusTone}">${escapeHtml(status)}</span>
+            <span class="badge ai-chat-status ai-chat-status-${badgeState.tone}">${escapeHtml(badgeState.label)}</span>
           </div>
           ${bodyHtml}
         </div>
@@ -287,7 +295,7 @@ function renderAiChatThreadHtml(config = {}) {
           </div>
         </div>
         <div class="risk-fold-summary-actions">
-          <span class="badge ai-chat-status ai-chat-status-${statusTone}">${escapeHtml(status)}</span>
+          <span class="badge ai-chat-status ai-chat-status-${badgeState.tone}">${escapeHtml(badgeState.label)}</span>
         </div>
       </summary>
       <div class="risk-fold-body ai-chat-panel-body">

@@ -48,6 +48,7 @@ let suppressNextAutosave = 0;
 let aiSettings = loadAiSettings();
 let aiChats = loadAiChatsState();
 globalThis.__riskRegisterAiChats = aiChats;
+globalThis.__riskRegisterAiSettings = aiSettings;
 let aiPanelOrder = loadAiPanelOrder();
 globalThis.__riskRegisterAiPanelOrder = aiPanelOrder;
 let aiConnectionAbortController = null;
@@ -571,6 +572,7 @@ function loadAiSettings() {
 
 function persistAiSettings(nextSettings) {
   aiSettings = normalizeAiSettings(nextSettings);
+  globalThis.__riskRegisterAiSettings = aiSettings;
   return writeStorageValue(AI_SETTINGS_KEY, JSON.stringify(aiSettings));
 }
 

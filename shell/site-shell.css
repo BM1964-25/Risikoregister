@@ -1704,11 +1704,11 @@ aside {
 
 .price-tax {
   display:block;
-  margin-top:4px;
+  margin-top:8px;
   color:rgba(246,250,248,0.68);
-  font-size:0.84rem;
+  font-size:0.68rem;
   font-weight:400;
-  letter-spacing:0.02em;
+  letter-spacing:0.03em;
 }
 
 .price-block.featured .price-copy {

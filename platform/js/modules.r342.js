@@ -3244,10 +3244,10 @@ export const modules = {
           </div>
           <div class="card-grid ai-hub-grid">
             <details class="info-card card-info risk-register-card risk-fold-card ai-connection-panel" id="aiConnectionPanel" open style="grid-column:1 / -1;">
-              <summary class="risk-fold-summary ai-panel-head">
-                <div class="risk-fold-summary-main ai-panel-head-copy">
+              <summary class="risk-fold-summary">
+                <div class="risk-fold-summary-main">
                   <div class="risk-fold-summary-topline">
-                    <button class="risk-fold-drag-handle" type="button" tabindex="-1" aria-hidden="true" style="pointer-events:none; opacity:0;">
+                    <button class="risk-fold-drag-handle" type="button" aria-label="KI-Verbindung verschieben" title="Tafel verschieben" onclick="void 0">
                       <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                         <rect x="2" y="3.25" width="12" height="1.5" rx="0.75"></rect>
                         <rect x="2" y="7.25" width="12" height="1.5" rx="0.75"></rect>

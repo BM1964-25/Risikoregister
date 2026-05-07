@@ -3840,20 +3840,12 @@
       box-sizing:border-box;
     }
 
-    .ai-connection-side {
-      display:grid;
-      gap:12px;
-      min-width:0;
-      grid-column:7 / span 6;
-      width:100%;
-      box-sizing:border-box;
-    }
-
     .ai-connection-info {
       display:grid;
       gap:10px;
       align-content:start;
       min-width:0;
+      grid-column:7 / span 6;
       width:100%;
       box-sizing:border-box;
       padding:14px 15px;
@@ -3861,33 +3853,6 @@
       border-radius:16px;
       background:linear-gradient(180deg, rgba(250,252,254,1), rgba(242,247,251,1));
       box-shadow:inset 0 1px 0 rgba(255,255,255,0.82);
-    }
-
-    .ai-budget-card {
-      display:grid;
-      gap:8px;
-      min-width:0;
-      width:100%;
-      box-sizing:border-box;
-      padding:14px 15px;
-      border:1px solid rgba(156,173,192,0.44);
-      border-radius:16px;
-      background:linear-gradient(180deg, rgba(250,252,254,1), rgba(242,247,251,1));
-      box-shadow:inset 0 1px 0 rgba(255,255,255,0.82);
-      align-content:start;
-    }
-
-    .ai-budget-card strong {
-      color:var(--muted);
-      font-size:0.78rem;
-      text-transform:uppercase;
-      letter-spacing:0.08em;
-    }
-
-    .ai-budget-value {
-      font-size:1.05rem;
-      font-weight:800;
-      color:var(--brand-dark);
     }
 
     .ai-connection-info strong {
@@ -4023,12 +3988,11 @@
       }
 
       .ai-connection-main,
-      .ai-connection-side {
+      .ai-connection-info {
         grid-column:1 / -1;
       }
 
-      .ai-connection-info,
-      .ai-budget-card {
+      .ai-connection-info {
         padding:12px 13px;
       }
 

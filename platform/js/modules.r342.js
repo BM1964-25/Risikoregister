@@ -3282,12 +3282,13 @@ export const modules = {
                     <div class="ai-connection-controls">
                       <button class="action-btn primary" id="saveAiSettingsBtn" type="button" onclick="void globalThis.__riskSaveAiSettings?.()">Speichern &amp; prüfen</button>
                       <button class="action-btn" id="testAiSettingsBtn" type="button" onclick="void globalThis.__riskTestAiSettings?.()">Erneut prüfen</button>
-                      <button class="action-btn danger" id="disconnectAiSettingsBtn" type="button" onclick="void globalThis.__riskDisconnectAiConnection?.()">Offline schalten</button>
-                      <button class="action-btn danger" id="deleteAiSettingsBtn" type="button" onclick="void globalThis.__riskDeleteAiApiKey?.()">API-Schlüssel löschen</button>
-                      <button class="storage-status storage-status-box ai-status-neutral" id="aiStatus" type="button" disabled style="grid-column:1 / -1;">Noch keine KI-Verbindung eingerichtet.</button>
-                      <p class="form-note ai-connection-help" style="grid-column:1 / -1; margin:0; line-height:1.08; white-space:nowrap;"><strong>Erneut prüfen:</strong> nutzt den gespeicherten Schlüssel und testet die Verbindung nochmals.</p>
-                      <p class="form-note ai-connection-help" style="grid-column:1 / -1; margin:0; line-height:1.08; white-space:nowrap;"><strong>Offline schalten:</strong> trennt nur die Verbindung.</p>
-                      <p class="form-note ai-connection-help" style="grid-column:1 / -1; margin:0; line-height:1.08; white-space:nowrap;"><strong>API-Schlüssel löschen:</strong> entfernt den Schlüssel wirklich aus dem Browser.</p>
+                    <button class="action-btn danger" id="disconnectAiSettingsBtn" type="button" onclick="void globalThis.__riskDisconnectAiConnection?.()">Offline schalten</button>
+                    <button class="action-btn danger" id="deleteAiSettingsBtn" type="button" onclick="void globalThis.__riskDeleteAiApiKey?.()">API-Schlüssel löschen</button>
+                    <button class="storage-status storage-status-box ai-status-neutral" id="aiStatus" type="button" disabled style="grid-column:1 / -1;">Noch keine KI-Verbindung eingerichtet.</button>
+                    <div class="form-note ai-release-note" style="grid-column:1 / -1; margin:-2px 0 2px; line-height:1.2; font-size:0.76rem;">Aktueller Release geladen: 07.05.2026, 14:23</div>
+                    <p class="form-note ai-connection-help" style="grid-column:1 / -1; margin:0; line-height:1.08; white-space:nowrap;"><strong>Erneut prüfen:</strong> nutzt den gespeicherten Schlüssel und testet die Verbindung nochmals.</p>
+                    <p class="form-note ai-connection-help" style="grid-column:1 / -1; margin:0; line-height:1.08; white-space:nowrap;"><strong>Offline schalten:</strong> trennt nur die Verbindung.</p>
+                    <p class="form-note ai-connection-help" style="grid-column:1 / -1; margin:0; line-height:1.08; white-space:nowrap;"><strong>API-Schlüssel löschen:</strong> entfernt den Schlüssel wirklich aus dem Browser.</p>
                     </div>
                   </div>
                   <div class="ai-connection-info">

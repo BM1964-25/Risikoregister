@@ -1275,7 +1275,7 @@ function renderAiSettingsPanel() {
     applyAiStatusAppearance(statusTarget, statusText);
   }
   if (testButton) {
-    testButton.textContent = aiSettings.testing ? "Verbindung wird geprüft ..." : (aiSettings.connected ? "Verbindung erneut prüfen" : "Verbindung testen");
+    testButton.textContent = aiSettings.testing ? "Verbindung wird geprüft ..." : (aiSettings.connected ? "Erneut prüfen" : "Verbindung prüfen");
     testButton.disabled = aiSettings.testing;
     testButton.classList.toggle("is-loading", aiSettings.testing);
   }
@@ -1449,7 +1449,7 @@ function disconnectAiConnection() {
     connected: false,
     testing: false,
     lastDisconnectAt: new Date().toISOString(),
-    lastStatus: "Verbindung getrennt. Schlüssel bleibt gespeichert."
+    lastStatus: "Offline geschaltet. Schlüssel bleibt gespeichert."
   });
   persistAiSettings(aiSettings);
   resetAiApiKeyInput(aiSettings.apiKeyPreview || buildAiApiKeyPreview(currentApiKey));
@@ -3752,7 +3752,7 @@ globalThis.__riskSaveAiSettings = () => {
     lastStatus: aiSettings.lastStatus
   });
   nextAiSettings.lastSavedAt = new Date().toISOString();
-  nextAiSettings.lastStatus = "Einstellungen gespeichert. Verbindung wird geprüft ...";
+  nextAiSettings.lastStatus = "Gespeichert. Verbindung wird geprüft ...";
   applyAiSettings(nextAiSettings, nextAiSettings.lastStatus);
   void startAiConnectionTest();
 };

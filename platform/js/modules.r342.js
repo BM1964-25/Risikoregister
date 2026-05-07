@@ -267,9 +267,17 @@ function renderAiChatThreadHtml(config = {}) {
   }
   return `
     <details class="info-card risk-register-card risk-fold-card ai-chat-panel ${escapeHtml(cardClass)}" open>
-      <summary class="risk-fold-summary ai-chat-panel-head">
-        <div class="risk-fold-summary-main ai-chat-panel-head-copy">
+      <summary class="risk-fold-summary">
+        <div class="risk-fold-summary-main">
           <div class="risk-fold-summary-topline ai-chat-panel-title-row">
+            <span class="risk-fold-drag-handle" aria-hidden="true" title="Tafel verschieben">
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <rect x="2" y="3.25" width="12" height="1.5" rx="0.75"></rect>
+                <rect x="2" y="7.25" width="12" height="1.5" rx="0.75"></rect>
+                <rect x="2" y="11.25" width="12" height="1.5" rx="0.75"></rect>
+              </svg>
+            </span>
+            <span class="risk-fold-toggle" aria-hidden="true"></span>
             <div class="risk-fold-summary-title">
               <strong>${escapeHtml(String(config.title || "Chat"))}</strong>
               <span>${escapeHtml(String(config.description || ""))}</span>
@@ -3247,13 +3255,13 @@ export const modules = {
               <summary class="risk-fold-summary">
                 <div class="risk-fold-summary-main">
                   <div class="risk-fold-summary-topline">
-                    <button class="risk-fold-drag-handle" type="button" aria-label="KI-Verbindung verschieben" title="Tafel verschieben" onclick="void 0">
+                    <span class="risk-fold-drag-handle" aria-hidden="true" title="Tafel verschieben">
                       <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                         <rect x="2" y="3.25" width="12" height="1.5" rx="0.75"></rect>
                         <rect x="2" y="7.25" width="12" height="1.5" rx="0.75"></rect>
                         <rect x="2" y="11.25" width="12" height="1.5" rx="0.75"></rect>
                       </svg>
-                    </button>
+                    </span>
                     <span class="risk-fold-toggle" aria-hidden="true"></span>
                     <div class="risk-fold-summary-title">
                       <strong>KI-Verbindung</strong>

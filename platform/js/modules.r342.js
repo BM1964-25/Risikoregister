@@ -190,7 +190,7 @@ function getAiChatConnectionBadgeState() {
     return { tone: "success", label: "Verbindung OK" };
   }
   if (hasApiKey) {
-    return { tone: "danger", label: "Verbindung fehlgeschlagen" };
+    return { tone: "danger", label: "Keine Verbindung" };
   }
   return { tone: "neutral", label: "Kein API-Schlüssel" };
 }

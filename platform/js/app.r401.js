@@ -1272,6 +1272,13 @@ function renderAiSettingsPanel() {
   }
 }
 
+function refreshAiModuleView() {
+  const activeModule = String(store.getState()?.ui?.activeModule || "project");
+  if (activeModule !== "ai") return;
+  renderView(store.getState());
+  renderAiSettingsPanel();
+}
+
 function resetAiApiKeyInput(placeholderPreview = "") {
   const apiKeyInput = document.getElementById("aiApiKey");
   if (!apiKeyInput) return;
@@ -1310,6 +1317,7 @@ function applyAiSettings(nextAiSettings, statusMessage) {
   aiSettings = saved ? loadAiSettings() : normalizeAiSettings(nextAiSettings);
   if (statusMessage) updateAiStatus(statusMessage);
   renderAiSettingsPanel();
+  refreshAiModuleView();
 }
 
 async function startAiConnectionTest() {
@@ -1331,6 +1339,7 @@ async function startAiConnectionTest() {
     persistAiSettings(aiSettings);
     renderAiSettingsPanel();
     updateAiStatus(aiSettings.lastStatus);
+    refreshAiModuleView();
     return;
   }
 
@@ -1338,6 +1347,7 @@ async function startAiConnectionTest() {
   persistAiSettings(aiSettings);
   renderAiSettingsPanel();
   updateAiStatus(aiSettings.lastStatus);
+  refreshAiModuleView();
 
   if (aiConnectionAbortController) {
     aiConnectionAbortController.abort();
@@ -1376,6 +1386,7 @@ async function startAiConnectionTest() {
     persistAiSettings(aiSettings);
     renderAiSettingsPanel();
     updateAiStatus(aiSettings.lastStatus);
+    refreshAiModuleView();
   } catch (error) {
     const errorMessage = String(error?.message || "");
     const message = error?.name === "AbortError"
@@ -1398,6 +1409,7 @@ async function startAiConnectionTest() {
     persistAiSettings(aiSettings);
     renderAiSettingsPanel();
     updateAiStatus(message);
+    refreshAiModuleView();
   } finally {
     window.clearTimeout(connectionTimeout);
     aiConnectionAbortController = null;
@@ -1424,6 +1436,7 @@ function disconnectAiConnection() {
   resetAiApiKeyInput(aiSettings.apiKeyPreview || buildAiApiKeyPreview(currentApiKey));
   renderAiSettingsPanel();
   updateAiStatus(aiSettings.lastStatus);
+  refreshAiModuleView();
   document.getElementById("aiApiKey")?.blur();
   store.setState((current) => ({
     ...current,

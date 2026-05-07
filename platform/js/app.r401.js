@@ -3607,17 +3607,22 @@ function buildPrintableReportHtml(title, subtitle, reportContent, fileName, allo
       html, body { background: #ffffff; color: #08131d; }
       @page { margin: 0; }
       body { font-family: "Source Sans 3", "Segoe UI", sans-serif; margin: 0; padding: 20mm; box-sizing: border-box; }
-      h1 { font-family: "DM Serif Display", Georgia, serif; font-size: 30px; margin: 0; color: #091f33; }
-      .report-title-spacer { height: 18px; line-height: 18px; font-size: 18px; font-weight: 400; }
-      .meta { color: #425466; margin-bottom: 12px; line-height: 1.6; }
-      .copy { white-space: ${copyWhiteSpace}; line-height: 1.7; font-size: 15px; }
+      h1 { font-family: "DM Serif Display", Georgia, serif; font-size: 32px; margin: 0; color: #091f33; letter-spacing: -0.02em; }
+      .report-title-spacer { height: 20px; line-height: 20px; font-size: 20px; font-weight: 400; }
+      .meta { color: #425466; margin: 0 0 14px; line-height: 1.55; }
+      .copy { white-space: ${copyWhiteSpace}; line-height: 1.72; font-size: 15px; }
       .copy ul, .copy ol { margin: 0 0 12px 1.25em; padding-left: 1.1em; }
       .copy li { margin: 0 0 5px; }
       .copy .report-section-heading {
-        margin: 18px 0 6px;
+        margin: 22px 0 8px;
+        padding-top: 6px;
+        border-top: 1px solid #d8e1ea;
+        break-after: avoid;
       }
       .copy .report-section-heading:first-of-type {
         margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
       }
       .copy .report-project-line {
         margin: 0 0 5px;
@@ -3626,12 +3631,22 @@ function buildPrintableReportHtml(title, subtitle, reportContent, fileName, allo
         font-weight: 400;
       }
       .copy .report-project-line-main {
-        font-size: 1.18rem;
+        font-size: 1.22rem;
         font-weight: 800;
       }
       .copy .report-project-line-secondary {
         font-size: 1rem;
         font-weight: 400;
+      }
+      .copy .report-section-heading strong {
+        color: #0b2237;
+      }
+      .copy .report-important-block {
+        margin: 0 0 14px;
+        padding: 10px 12px;
+        background: #f5f8fb;
+        border: 1px solid #d9e3ec;
+        border-radius: 12px;
       }
       .copy .report-project-line-main strong,
       .copy .report-project-line-main span {

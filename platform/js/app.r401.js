@@ -1,5 +1,5 @@
-import { createStore, cloneState } from "./state.r342.js?fresh=415";
-import { modules, riskCategoryOptions, normalizeRiskCategoryValue, normalizeRiskStatusValue, normalizeRiskRegisterPanelOpenStates, normalizeRiskRegisterPanelOrder, deriveRiskLikelihoodFromPercent, buildManagementReportData, buildSelectedReportData, renderRiskReportText } from "./modules.r342.js?fresh=922";
+import { createStore, cloneState } from "./state.r342.js?fresh=416";
+import { modules, riskCategoryOptions, normalizeRiskCategoryValue, normalizeRiskStatusValue, normalizeRiskRegisterPanelOpenStates, normalizeRiskRegisterPanelOrder, deriveRiskLikelihoodFromPercent, buildManagementReportData, buildSelectedReportData, renderRiskReportText } from "./modules.r342.js?fresh=923";
 
 const store = createStore(cloneState());
 if (typeof history !== "undefined" && "scrollRestoration" in history) {
@@ -1076,9 +1076,7 @@ function setSecondaryPanelVisibility(panelId, visible) {
 function renderAiSettingsPanel() {
   const panel = document.getElementById("aiConnectionPanel");
   const apiKeyInput = document.getElementById("aiApiKey");
-  const budgetEurInput = document.getElementById("aiBudgetEur");
   const budgetDisplay = document.getElementById("aiBudgetDisplay");
-  const budgetRemainingDisplay = document.getElementById("aiBudgetRemainingDisplay");
   const statusTarget = document.getElementById("aiStatus");
   const testButton = document.getElementById("testAiSettingsBtn");
   const disconnectButton = document.getElementById("disconnectAiSettingsBtn");
@@ -1091,9 +1089,6 @@ function renderAiSettingsPanel() {
   if (apiKeyInput && (!String(aiSettings.apiKey || "").trim() || document.activeElement !== apiKeyInput)) {
     apiKeyInput.value = aiSettings.apiKey || "";
   }
-  if (budgetEurInput && document.activeElement !== budgetEurInput) {
-    budgetEurInput.value = String(Number(aiSettings.budgetEur) || 0);
-  }
   if (budgetDisplay) {
     const budgetText = new Intl.NumberFormat("de-DE", {
       style: "currency",
@@ -1101,9 +1096,6 @@ function renderAiSettingsPanel() {
       maximumFractionDigits: 0
     }).format(Number(aiSettings.budgetEur) || 0);
     budgetDisplay.textContent = budgetText;
-    if (budgetRemainingDisplay) {
-      budgetRemainingDisplay.textContent = budgetText;
-    }
   }
   if (statusTarget) {
     const statusText = getAiStatusLabel(aiSettings);
@@ -1134,13 +1126,12 @@ function resetAiApiKeyInput() {
 
 function readAiSettingsFromPanel() {
   const apiKey = String(document.getElementById("aiApiKey")?.value || "");
-  const budgetEur = Number(document.getElementById("aiBudgetEur")?.value || 0);
   return normalizeAiSettings({
     provider: "anthropic",
     modelProfile: "balanced",
     apiKey,
     proxyBaseUrl: aiSettings.proxyBaseUrl || DEFAULT_AI_PROXY_BASE_URL,
-    budgetEur,
+    budgetEur: Number(aiSettings.budgetEur) || getDefaultAiSettings().budgetEur,
     connected: aiSettings.connected,
     testing: aiSettings.testing,
     lastSavedAt: aiSettings.lastSavedAt,

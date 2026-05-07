@@ -3239,19 +3239,18 @@ export const modules = {
                     <button class="storage-status storage-status-box ai-status-neutral" id="aiStatus" type="button" disabled style="grid-column:1 / -1;">Noch keine KI-Verbindung eingerichtet.</button>
                   </div>
                 </div>
-                <div class="ai-connection-info">
-                  <strong>API-Guthaben</strong>
-                  <p>Hier kannst du das individuelle Startbudget des Kunden eintragen und im Blick behalten.</p>
-                  <div class="ai-connection-links">
-                    <a class="action-btn" href="https://console.anthropic.com/" target="_blank" rel="noopener noreferrer">Anthropic Console öffnen</a>
+                <div class="ai-connection-side">
+                  <div class="ai-connection-info">
+                    <strong>API-Schlüssel &amp; Kosten</strong>
+                    <p>Für diese App brauchst du keinen Claude-Free-Account. Es genügt ein Anthropic-API-Schlüssel aus der Console.</p>
+                    <div class="ai-connection-links">
+                      <a class="action-btn" href="https://console.anthropic.com/" target="_blank" rel="noopener noreferrer">Anthropic Console öffnen</a>
+                    </div>
+                    <p>Modell: Claude Sonnet 4. Für die automatische KI-Nutzung benötigt die App einen technischen Anthropic-API-Schlüssel. Das ist kein normaler Benutzer- oder Claude-Account, sondern der Zugriff für die direkte KI-Anbindung im Browser. Für den Einstieg empfehle ich ein Startbudget von etwa 10 Euro. Das reicht je nach Umfang grob für zahlreiche kurze Prüfungen oder etwa 150 bis 300 Seiten komprimierter Berichtstexte; bei längeren, ausführlicheren Berichten entsprechend weniger. Bei Bedarf kann das Budget jederzeit individuell angepasst werden. Die Abrechnung läuft direkt zwischen dir und Anthropic/Claude und wird separat nach Verbrauch berechnet. Die offizielle Preisübersicht findest du in der Anthropic-Dokumentation zur Preisübersicht.</p>
                   </div>
-                  <div class="form-field" style="margin-top:2px;">
-                    <label for="aiBudgetEur">API-Guthaben / Startbudget (€)</label>
-                    <input id="aiBudgetEur" data-ai-setting-field="budgetEur" type="number" inputmode="decimal" min="0" step="1" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-form-type="other" value="10" placeholder="10">
-                  </div>
-                  <div class="form-note" style="margin-top:2px;padding:10px 12px;border:1px solid rgba(22,63,99,0.14);border-radius:12px;background:#f7fbfe;">
-                    <div>Aktuelles Guthaben: <strong id="aiBudgetDisplay">10 €</strong></div>
-                    <div>Verfügbar geschätzt: <strong id="aiBudgetRemainingDisplay">10 €</strong></div>
+                  <div class="ai-budget-card">
+                    <strong>Aktuelles Guthaben</strong>
+                    <div class="ai-budget-value" id="aiBudgetDisplay">10&nbsp;€</div>
                   </div>
                 </div>
               </div>

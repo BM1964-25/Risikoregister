@@ -187,6 +187,7 @@ function renderAiChatThreadHtml(config = {}) {
   const cardClass = String(config.cardClass || "card-info").trim();
   const latestAssistant = [...messages].reverse().find((message) => message?.role === "assistant") || null;
   const status = String(config.status || "Bereit");
+  const collapsible = config.collapsible !== false;
   const statusTone = config.busy
     ? "busy"
     : /fehler|fehlgeschlagen|fehlt/i.test(status)
@@ -196,68 +197,91 @@ function renderAiChatThreadHtml(config = {}) {
         : "neutral";
   const outputToneClass = statusTone === "success" ? "tone-success" : statusTone === "danger" ? "tone-danger" : "tone-neutral";
   const outputMinHeight = Math.max(120, Number(config.outputMinHeight) || 200);
-  return `
-    <section class="info-card ai-chat-card ${escapeHtml(cardClass)}">
-      <div class="ai-chat-top">
-        <div class="ai-chat-head">
-          <div class="ai-chat-head-copy">
-            <h3>${escapeHtml(String(config.title || "Chat"))}</h3>
-            <p class="form-note">${escapeHtml(String(config.description || ""))}</p>
-          </div>
-          <span class="badge ai-chat-status ai-chat-status-${statusTone}">${escapeHtml(status)}</span>
-        </div>
-        ${config.context ? `<p class="ai-chat-context">${escapeHtml(String(config.context))}</p>` : ""}
-        ${prompts.length ? `
-          <div class="ai-chat-prompts ${escapeHtml(String(config.promptsClass || ""))}">
-            ${prompts.map((prompt) => `
-              <button class="action-btn ai-chat-chip" type="button" data-ai-chat-prompt="${escapeHtml(prompt)}" onclick="void globalThis.__riskAskAiChat?.('${escapeHtml(chatId)}', this.dataset.aiChatPrompt)">${escapeHtml(prompt)}</button>
-            `).join("")}
-          </div>
-        ` : ""}
-        <div class="${escapeHtml(String(config.composerClass || "ai-chat-composer"))}">
-          <label for="${escapeHtml(config.inputId || "")}">${escapeHtml(String(config.inputLabel || "Individuelle Fachfrage"))}</label>
-          <textarea id="${escapeHtml(config.inputId || "")}" data-ai-chat-field="draft" data-ai-chat-id="${escapeHtml(chatId)}" placeholder="${escapeHtml(String(config.placeholder || ""))}">${escapeHtml(String(config.draft || ""))}</textarea>
-          <div class="ai-chat-actions">
-            <button class="action-btn primary" type="button" onclick="void globalThis.__riskSendAiChat?.('${escapeHtml(chatId)}')" ${config.busy ? "disabled" : ""}>${escapeHtml(String(config.sendLabel || "Frage senden"))}</button>
-          </div>
-        </div>
+  const bodyHtml = `
+    ${config.context ? `<p class="ai-chat-context">${escapeHtml(String(config.context))}</p>` : ""}
+    ${prompts.length ? `
+      <div class="ai-chat-prompts ${escapeHtml(String(config.promptsClass || ""))}">
+        ${prompts.map((prompt) => `
+          <button class="action-btn ai-chat-chip" type="button" data-ai-chat-prompt="${escapeHtml(prompt)}" onclick="void globalThis.__riskAskAiChat?.('${escapeHtml(chatId)}', this.dataset.aiChatPrompt)">${escapeHtml(prompt)}</button>
+        `).join("")}
       </div>
-      <div class="ai-chat-bottom">
-        <div class="ai-chat-output ${outputToneClass} ${config.busy ? "is-loading" : ""}" style="min-height:${outputMinHeight}px;">
-          <strong>Ausgabe</strong>
-          <div class="ai-chat-output-body">
-            ${config.busy ? `
-              <div class="ai-chat-output-loading">
-                <span class="ai-chat-output-spinner" aria-hidden="true"></span>
-                <span>${escapeHtml(String(config.loadingLabel || "Antwort wird erzeugt ..."))}</span>
-              </div>
-            ` : latestAssistant ? `
-              <div class="ai-chat-output-answer">${formatAiChatMarkupHtml(String(latestAssistant.content || ""))}</div>
-            ` : `
-              <div class="ai-chat-empty">
-                <strong>Antwort erscheint hier in Grün.</strong>
-                <span>Klicke auf eine Frage oder stelle oben eine eigene Fachfrage.</span>
-              </div>
-            `}
-          </div>
-        </div>
-        <div class="ai-chat-history" aria-live="polite">
-          ${messages.length ? `
-            <div class="ai-chat-log">
-              ${messages.map((message) => renderAiChatBubbleHtml(message)).join("")}
+    ` : ""}
+    <div class="${escapeHtml(String(config.composerClass || "ai-chat-composer"))}">
+      <label for="${escapeHtml(config.inputId || "")}">${escapeHtml(String(config.inputLabel || "Individuelle Fachfrage"))}</label>
+      <textarea id="${escapeHtml(config.inputId || "")}" data-ai-chat-field="draft" data-ai-chat-id="${escapeHtml(chatId)}" placeholder="${escapeHtml(String(config.placeholder || ""))}">${escapeHtml(String(config.draft || ""))}</textarea>
+      <div class="ai-chat-actions">
+        <button class="action-btn primary" type="button" onclick="void globalThis.__riskSendAiChat?.('${escapeHtml(chatId)}')" ${config.busy ? "disabled" : ""}>${escapeHtml(String(config.sendLabel || "Frage senden"))}</button>
+      </div>
+    </div>
+    <div class="ai-chat-bottom">
+      <div class="ai-chat-output ${outputToneClass} ${config.busy ? "is-loading" : ""}" style="min-height:${outputMinHeight}px;">
+        <strong>Ausgabe</strong>
+        <div class="ai-chat-output-body">
+          ${config.busy ? `
+            <div class="ai-chat-output-loading">
+              <span class="ai-chat-output-spinner" aria-hidden="true"></span>
+              <span>${escapeHtml(String(config.loadingLabel || "Antwort wird erzeugt ..."))}</span>
             </div>
+          ` : latestAssistant ? `
+            <div class="ai-chat-output-answer">${formatAiChatMarkupHtml(String(latestAssistant.content || ""))}</div>
           ` : `
             <div class="ai-chat-empty">
-              <strong>Noch kein Verlauf vorhanden.</strong>
-              <span>Stell hier einfach eine Frage. Die Antwort erscheint im grünen Ausgabe-Fenster.</span>
+              <strong>Antwort erscheint hier in Grün.</strong>
+              <span>Klicke auf eine Frage oder stelle oben eine eigene Fachfrage.</span>
             </div>
           `}
         </div>
-        <div class="ai-chat-output-actions">
-          <button class="action-btn danger" type="button" onclick="void globalThis.__riskClearAiChat?.('${escapeHtml(chatId)}')">Verlauf löschen</button>
-        </div>
       </div>
-    </section>
+      <div class="ai-chat-history" aria-live="polite">
+        ${messages.length ? `
+          <div class="ai-chat-log">
+            ${messages.map((message) => renderAiChatBubbleHtml(message)).join("")}
+          </div>
+        ` : `
+          <div class="ai-chat-empty">
+            <strong>Noch kein Verlauf vorhanden.</strong>
+            <span>Stell hier einfach eine Frage. Die Antwort erscheint im grünen Ausgabe-Fenster.</span>
+          </div>
+        `}
+      </div>
+      <div class="ai-chat-output-actions">
+        <button class="action-btn danger" type="button" onclick="void globalThis.__riskClearAiChat?.('${escapeHtml(chatId)}')">Verlauf löschen</button>
+      </div>
+    </div>
+  `;
+  if (!collapsible) {
+    return `
+      <section class="info-card ai-chat-card ${escapeHtml(cardClass)}">
+        <div class="ai-chat-top">
+          <div class="ai-chat-head">
+            <div class="ai-chat-head-copy">
+              <h3>${escapeHtml(String(config.title || "Chat"))}</h3>
+              <p class="form-note">${escapeHtml(String(config.description || ""))}</p>
+            </div>
+            <span class="badge ai-chat-status ai-chat-status-${statusTone}">${escapeHtml(status)}</span>
+          </div>
+          ${bodyHtml}
+        </div>
+      </section>
+    `;
+  }
+  return `
+    <details class="info-card ai-chat-panel ${escapeHtml(cardClass)}" open>
+      <summary class="ai-chat-panel-head">
+        <div class="ai-chat-panel-head-copy">
+          <div class="ai-chat-panel-title-row">
+            <h3>${escapeHtml(String(config.title || "Chat"))}</h3>
+            <span class="badge ai-chat-status ai-chat-status-${statusTone}">${escapeHtml(status)}</span>
+          </div>
+          <p class="form-note">${escapeHtml(String(config.description || ""))}</p>
+        </div>
+      </summary>
+      <div class="ai-chat-panel-body">
+        <section class="info-card ai-chat-card ${escapeHtml(cardClass)}">
+          ${bodyHtml}
+        </section>
+      </div>
+    </details>
   `;
 }
 
@@ -3215,44 +3239,45 @@ export const modules = {
             <span class="badge">KI-Dialog</span>
           </div>
           <div class="card-grid ai-hub-grid">
-            <section class="info-card card-info" id="aiConnectionPanel" style="grid-column:1 / -1;">
-              <h3>KI-Verbindung</h3>
-              <div class="ai-connection-layout">
-                <div class="ai-connection-main">
-                  <div class="ai-connection-intro">
-                    <div>
-                      <strong>Sichere lokale Verbindung</strong>
-                      <p class="ai-connection-copy">Der API-Schlüssel bleibt lokal im Browser; Speichern prüft die Verbindung und zeigt den Status rechts.</p>
-                    </div>
-                    <span class="badge ai-connection-badge">Live-Check</span>
-                  </div>
-                  <div class="action-file-grid">
-                    <div class="form-field" style="grid-column:1/-1;">
-                      <label for="aiApiKey">Anthropic API-Schlüssel</label>
-                      <div class="ai-secret-field">
-                        <span class="ai-secret-key-icon" aria-hidden="true">🔑</span>
-                        <input id="aiApiKey" data-ai-setting-field="apiKey" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-form-type="other" value="" placeholder="sk- ...">
-                        <button class="ai-secret-toggle" id="aiApiKeyToggle" type="button" aria-label="Schlüssel anzeigen" aria-pressed="false" onclick="void globalThis.__riskToggleAiApiKeyVisibility?.()">👁</button>
+            <details class="info-card card-info ai-connection-panel" id="aiConnectionPanel" open style="grid-column:1 / -1;">
+              <summary class="ai-panel-head">
+                <div class="ai-panel-head-copy">
+                  <strong>KI-Verbindung</strong>
+                  <p class="ai-connection-copy">Der API-Schlüssel bleibt lokal im Browser; Speichern prüft die Verbindung und zeigt den Status rechts.</p>
+                </div>
+                <span class="badge ai-connection-badge">Live-Check</span>
+              </summary>
+              <div class="panel-body ai-connection-panel-body">
+                <div class="ai-connection-layout">
+                  <div class="ai-connection-main">
+                    <div class="action-file-grid">
+                      <div class="form-field" style="grid-column:1/-1;">
+                        <label for="aiApiKey">Anthropic API-Schlüssel</label>
+                        <div class="ai-secret-field">
+                          <span class="ai-secret-key-icon" aria-hidden="true">🔑</span>
+                          <input id="aiApiKey" data-ai-setting-field="apiKey" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-form-type="other" value="" placeholder="sk- ...">
+                          <button class="ai-secret-toggle" id="aiApiKeyToggle" type="button" aria-label="Schlüssel anzeigen" aria-pressed="false" onclick="void globalThis.__riskToggleAiApiKeyVisibility?.()">👁</button>
+                        </div>
                       </div>
                     </div>
+                    <div class="ai-connection-controls">
+                      <button class="action-btn primary" id="saveAiSettingsBtn" type="button" onclick="void globalThis.__riskSaveAiSettings?.()">Einstellungen speichern</button>
+                      <button class="action-btn" id="testAiSettingsBtn" type="button" onclick="void globalThis.__riskTestAiSettings?.()">Verbindung erneut prüfen</button>
+                      <button class="action-btn danger" id="disconnectAiSettingsBtn" type="button" onclick="void globalThis.__riskDisconnectAiConnection?.()">Verbindung trennen</button>
+                      <button class="storage-status storage-status-box ai-status-neutral" id="aiStatus" type="button" disabled style="grid-column:1 / -1;">Noch keine KI-Verbindung eingerichtet.</button>
+                    </div>
                   </div>
-                  <div class="ai-connection-controls">
-                    <button class="action-btn primary" id="saveAiSettingsBtn" type="button" onclick="void globalThis.__riskSaveAiSettings?.()">Einstellungen speichern</button>
-                    <button class="action-btn" id="testAiSettingsBtn" type="button" onclick="void globalThis.__riskTestAiSettings?.()">Verbindung erneut prüfen</button>
-                    <button class="action-btn danger" id="disconnectAiSettingsBtn" type="button" onclick="void globalThis.__riskDisconnectAiConnection?.()">Verbindung trennen</button>
-                    <button class="storage-status storage-status-box ai-status-neutral" id="aiStatus" type="button" disabled style="grid-column:1 / -1;">Noch keine KI-Verbindung eingerichtet.</button>
+                  <div class="ai-connection-info">
+                    <strong>API-Schlüssel &amp; Kosten</strong>
+                    <p class="ai-connection-copy-singleline">Kein Claude-Free-Account nötig: Es genügt ein Anthropic-API-Schlüssel aus der Console.</p>
+                    <div class="ai-connection-links">
+                      <a class="action-btn" href="https://console.anthropic.com/" target="_blank" rel="noopener noreferrer">Anthropic Console öffnen</a>
+                    </div>
+                    <p>Modell: Claude Sonnet 4. Für die automatische KI-Nutzung benötigt die App einen technischen Anthropic-API-Schlüssel. Das ist kein normaler Benutzer- oder Claude-Account, sondern der Zugriff für die direkte KI-Anbindung im Browser. Für den Einstieg werden 10 Euro empfohlen. Das ist kein ausgelesener Kontostand, sondern nur eine Orientierung: Je nach Umfang reicht das grob für zahlreiche kurze Prüfungen oder etwa 150 bis 300 Seiten komprimierter Berichtstexte; bei längeren, ausführlicheren Berichten entsprechend weniger. Die Abrechnung läuft direkt zwischen dir und Anthropic/Claude und wird separat nach Verbrauch berechnet. Die offizielle <a href="https://docs.anthropic.com/en/docs/about-claude/pricing" target="_blank" rel="noopener noreferrer">Anthropic-Dokumentation zur Preisübersicht</a> findest du dort.</p>
                   </div>
-                </div>
-                <div class="ai-connection-info">
-                  <strong>API-Schlüssel &amp; Kosten</strong>
-                  <p class="ai-connection-copy-singleline">Kein Claude-Free-Account nötig: Es genügt ein Anthropic-API-Schlüssel aus der Console.</p>
-                  <div class="ai-connection-links">
-                    <a class="action-btn" href="https://console.anthropic.com/" target="_blank" rel="noopener noreferrer">Anthropic Console öffnen</a>
-                  </div>
-                  <p>Modell: Claude Sonnet 4. Für die automatische KI-Nutzung benötigt die App einen technischen Anthropic-API-Schlüssel. Das ist kein normaler Benutzer- oder Claude-Account, sondern der Zugriff für die direkte KI-Anbindung im Browser. Für den Einstieg werden 10 Euro empfohlen. Das ist kein ausgelesener Kontostand, sondern nur eine Orientierung: Je nach Umfang reicht das grob für zahlreiche kurze Prüfungen oder etwa 150 bis 300 Seiten komprimierter Berichtstexte; bei längeren, ausführlicheren Berichten entsprechend weniger. Die Abrechnung läuft direkt zwischen dir und Anthropic/Claude und wird separat nach Verbrauch berechnet. Die offizielle <a href="https://docs.anthropic.com/en/docs/about-claude/pricing" target="_blank" rel="noopener noreferrer">Anthropic-Dokumentation zur Preisübersicht</a> findest du dort.</p>
                 </div>
               </div>
-            </section>
+            </details>
             ${renderAiChatThreadHtml({
               chatId: "fach",
               title: "Fach-Chat",
@@ -3272,6 +3297,7 @@ export const modules = {
               sendLabel: "Fachfrage senden",
               outputMinHeight: 240,
               composerClass: "ai-chat-composer compact",
+              collapsible: true,
               draft: String(aiDrafts.fach || ""),
               busy: Boolean(fachChat.busy),
               status: String(fachChat.status || "Bereit"),
@@ -3296,6 +3322,7 @@ export const modules = {
               outputMinHeight: 240,
               composerClass: "ai-chat-composer compact",
               promptsClass: "help-flow",
+              collapsible: true,
               draft: String(aiDrafts.hilfe || ""),
               busy: Boolean(hilfeChat.busy),
               status: String(hilfeChat.status || "Bereit"),

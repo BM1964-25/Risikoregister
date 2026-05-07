@@ -4114,11 +4114,26 @@
 
     .ai-connection-panel > summary {
       list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:14px 16px 13px;
       cursor:pointer;
+      background:
+        radial-gradient(circle at top right, rgba(22,63,99,0.14), transparent 28%),
+        linear-gradient(180deg, #f6fafe, #dfe9f3);
+      border-bottom:1px solid rgba(129,154,176,0.76);
     }
 
     .ai-connection-panel > summary::-webkit-details-marker {
       display:none;
+    }
+
+    .ai-connection-panel[open] > summary {
+      background:
+        radial-gradient(circle at top right, rgba(22,63,99,0.18), transparent 30%),
+        linear-gradient(180deg, #f3f8fc, #d7e4ee);
     }
 
     .ai-panel-head {
@@ -4126,7 +4141,9 @@
       align-items:center;
       justify-content:space-between;
       gap:10px;
-      color:#7c1f26;
+      color:var(--brand-dark);
+      width:100%;
+      min-width:0;
     }
 
     .ai-panel-head-copy {
@@ -4161,17 +4178,26 @@
 
     .ai-chat-panel > summary {
       list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:14px 16px 13px;
       cursor:pointer;
-      padding:0;
-      background:none;
+      background:
+        radial-gradient(circle at top right, rgba(22,63,99,0.14), transparent 28%),
+        linear-gradient(180deg, #f6fafe, #dfe9f3);
+      border-bottom:1px solid rgba(129,154,176,0.76);
     }
 
     .ai-chat-panel > summary::-webkit-details-marker {
       display:none;
     }
 
-    .ai-chat-panel[open] .ai-chat-panel-head::after {
-      transform:rotate(-135deg);
+    .ai-chat-panel[open] > summary {
+      background:
+        radial-gradient(circle at top right, rgba(22,63,99,0.18), transparent 30%),
+        linear-gradient(180deg, #f3f8fc, #d7e4ee);
     }
 
     .ai-chat-panel-head {
@@ -4195,6 +4221,10 @@
       opacity:0.8;
       margin-left:auto;
       flex:0 0 auto;
+    }
+
+    .ai-chat-panel[open] .ai-chat-panel-head::after {
+      transform:rotate(-135deg);
     }
 
     .ai-chat-panel-head-copy {
@@ -4233,7 +4263,7 @@
     .ai-chat-panel-body {
       display:grid;
       gap:0;
-      padding:0 18px 18px;
+      padding:14px;
     }
 
     .ai-panel-head::after {

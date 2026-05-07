@@ -6,7 +6,10 @@ if (typeof history !== "undefined" && "scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
 const CURRENT_SCHEMA_VERSION = 2;
-const APP_RELEASE_VERSION = "2026-05-07.2";
+const APP_RELEASE_VERSION = (() => {
+  const parsed = Date.parse(globalThis.document?.lastModified || "");
+  return Number.isFinite(parsed) ? String(parsed) : String(Date.now());
+})();
 const PROJECT_STATE_MIGRATIONS = Object.freeze({
   2: (state) => {
     const baseProject = cloneState().project;
@@ -63,6 +66,7 @@ const reportDraftUndoStack = uiDrafts.riskReportDraftUndoStack || (uiDrafts.risk
 const reportDraftRedoStack = uiDrafts.riskReportDraftRedoStack || (uiDrafts.riskReportDraftRedoStack = []);
 let suppressNextAutosave = 0;
 resetStoredStateForNewRelease();
+globalThis.__riskRegisterReleaseLabel = formatReleaseLabel(APP_RELEASE_VERSION) || formatReleaseLabel(Date.now());
 let aiSettings = loadAiSettings();
 let aiChats = loadAiChatsState();
 globalThis.__riskRegisterAiChats = aiChats;
@@ -314,6 +318,18 @@ function formatTimestamp(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "Zeitstempel ungültig";
   return date.toLocaleString("de-DE");
+}
+
+function formatReleaseLabel(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("de-DE", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(date);
 }
 
 function buildAiApiKeyPreview(value) {

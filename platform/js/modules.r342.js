@@ -2303,7 +2303,6 @@ export const modules = {
                       </select>
                     </div>
                     <div class="form-note" style="grid-column:1 / -1; margin:-4px 0 2px;">
-                      Status beschreibt den Bearbeitungsstand. Priorität beschreibt die fachliche Dringlichkeit. Ein Risiko kann offen und trotzdem nur zu beobachten sein.
                     </div>
                     <div class="form-field">
                       <label for="risk_due_${riskIndex}">Fällig am</label>

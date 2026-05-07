@@ -3042,26 +3042,6 @@ export const modules = {
       }, null, 2);
       const reportExportDocHtml = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="color-scheme" content="light"><title>${escapeHtml(reportOutputTitle)}</title><style>@page{margin:0;}html,body{background:#ffffff;color:#08131d;}body{font-family:"Source Sans 3","Segoe UI",sans-serif;margin:0;}h1{font-family:"DM Serif Display",Georgia,serif;font-size:30px;margin:0;color:#091f33;}.report-title-spacer{height:18px;line-height:18px;font-size:18px;}.meta{color:#425466;margin-bottom:12px;line-height:1.6;}.copy{line-height:1.7;font-size:15px;}.copy ul,.copy ol{margin:0 0 12px 1.25em;padding-left:1.1em;}.copy li{margin:0 0 5px;}.copy .report-section-heading{margin:18px 0 6px;}.copy .report-section-heading:first-of-type{margin-top:0;}.copy .report-project-line{margin:0 0 5px;color:#091f33;line-height:1.45;font-weight:400;}.copy .report-project-line-main{font-size:1.18rem;font-weight:800;}.copy .report-project-line-secondary{font-size:1rem;font-weight:400;}.copy .report-meta-line-break{margin-bottom:12px;}.copy .report-paragraph-spacer{height:12px;}.copy blockquote{margin:0 0 12px;padding:2px 0 2px 14px;border-left:3px solid #9fb3c6;color:#334454;font-style:italic;}.copy font[size="5"]{font-size:1.18em;}.copy font[size="4"]{font-size:1.08em;}.copy font[size="3"]{font-size:1em;}.copy font[size="2"]{font-size:0.9em;}</style></head><body><h1>${escapeHtml(reportOutputTitle)}</h1><div class="report-title-spacer" aria-hidden="true">&nbsp;</div><div class="copy">${reportMarkup}</div></body></html>`;
       const reportPdfPreviewHtml = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="color-scheme" content="light"><title>${escapeHtml(reportExportBaseName || reportOutputTitle)}</title><style>@page{margin:0;}html,body{background:#ffffff;color:#08131d;}body{font-family:"Source Sans 3","Segoe UI",sans-serif;margin:0;padding:20mm;box-sizing:border-box;}h1{font-family:"DM Serif Display",Georgia,serif;font-size:30px;margin:0;color:#091f33;}.report-title-spacer{height:18px;line-height:18px;font-size:18px;}.meta{color:#425466;margin-bottom:12px;line-height:1.6;}.copy{line-height:1.7;font-size:15px;}.copy ul,.copy ol{margin:0 0 12px 1.25em;padding-left:1.1em;}.copy li{margin:0 0 5px;}.copy .report-section-heading{margin:18px 0 6px;}.copy .report-section-heading:first-of-type{margin-top:0;}.copy .report-project-line{margin:0 0 5px;color:#091f33;line-height:1.45;font-weight:400;}.copy .report-project-line-main{font-size:1.18rem;font-weight:800;}.copy .report-project-line-secondary{font-size:1rem;font-weight:400;}.copy .report-meta-line-break{margin-bottom:12px;}.copy .report-paragraph-spacer{height:12px;}.copy blockquote{margin:0 0 12px;padding:2px 0 2px 14px;border-left:3px solid #9fb3c6;color:#334454;font-style:italic;}.copy font[size="5"]{font-size:1.18em;}.copy font[size="4"]{font-size:1.08em;}.copy font[size="3"]{font-size:1em;}.copy font[size="2"]{font-size:0.9em;}</style></head><body><h1>${escapeHtml(reportOutputTitle)}</h1><div class="report-title-spacer" aria-hidden="true">&nbsp;</div><div class="copy">${reportMarkup}</div><script>window.addEventListener('load',()=>window.setTimeout(()=>window.print(),120),{once:true});</script></body></html>`;
-      const reportTxtHref = typeof globalThis.__riskCreateReportExportObjectUrl === "function"
-        ? globalThis.__riskCreateReportExportObjectUrl(reportExportPlainText, "text/plain;charset=utf-8")
-        : `data:text/plain;charset=utf-8,${encodeURIComponent(reportExportPlainText)}`;
-      const reportJsonHref = typeof globalThis.__riskCreateReportExportObjectUrl === "function"
-        ? globalThis.__riskCreateReportExportObjectUrl(reportExportJson, "application/json;charset=utf-8")
-        : `data:application/json;charset=utf-8,${encodeURIComponent(reportExportJson)}`;
-      const reportDocHref = typeof globalThis.__riskCreateReportExportObjectUrl === "function"
-        ? globalThis.__riskCreateReportExportObjectUrl(reportExportDocHtml, "application/msword;charset=utf-8")
-        : `data:application/msword;charset=utf-8,${encodeURIComponent(reportExportDocHtml)}`;
-      const reportPdfHref = typeof globalThis.__riskCreateReportExportObjectUrl === "function"
-        ? globalThis.__riskCreateReportExportObjectUrl(reportPdfPreviewHtml, "text/html;charset=utf-8")
-        : `data:text/html;charset=utf-8,${encodeURIComponent(reportPdfPreviewHtml)}`;
-      const reportSelectedExportHref = reportExportFormat === "json"
-        ? reportJsonHref
-        : reportExportFormat === "doc"
-          ? reportDocHref
-          : reportExportFormat === "pdf"
-            ? reportPdfHref
-            : reportTxtHref;
-      const reportSelectedExportDownloadName = `${reportExportBaseName}.${reportExportFormat === "json" ? "json" : reportExportFormat === "doc" ? "doc" : "txt"}`;
       const reportWorkshopTask = "risk-report";
       const reportWorkshopState = state.ui?.aiWorkshop || {};
       const reportWorkshopActive = reportWorkshopState.activeTask === reportWorkshopTask;
@@ -3215,10 +3195,7 @@ export const modules = {
                   </div>
                   <p class="form-note">Alle Berichtsexporte werden im Downloads-Ordner gespeichert.</p>
                   <div class="report-output-actions">
-                    ${reportExportFormat === "pdf"
-                      ? `<a class="action-btn primary" id="reportExportButton" href="${reportSelectedExportHref}" target="_blank" rel="noopener noreferrer" onclick="void globalThis.__riskExportSelectedReport?.()">${reportOutputPdfButtonLabel}</a>`
-                      : `<a class="action-btn primary" id="reportExportButton" href="${reportSelectedExportHref}" download="${reportSelectedExportDownloadName}" target="_blank" rel="noopener noreferrer" onclick="void globalThis.__riskExportSelectedReport?.()">${reportOutputButtonLabel}</a>`
-                    }
+                    <button class="action-btn primary" id="reportExportButton" type="button" data-report-export-format="${escapeHtml(reportExportFormat)}">${reportExportFormat === "pdf" ? reportOutputPdfButtonLabel : reportOutputButtonLabel}</button>
                   </div>
                 </div>
               </div>
